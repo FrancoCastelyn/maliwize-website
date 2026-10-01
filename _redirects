@@ -25,7 +25,6 @@
 /inbox                  https://app.maliwize.co.za/inbox                     301
 /me/*                   https://app.maliwize.co.za/me/:splat                 301
 /me                     https://app.maliwize.co.za/me                        301
-/maliscore              https://app.maliwize.co.za/maliscore                 301
 /rewards/*              https://app.maliwize.co.za/rewards/:splat            301
 /explore/*              https://app.maliwize.co.za/explore/:splat            301
 /explore                https://app.maliwize.co.za/explore                   301

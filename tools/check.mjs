@@ -27,11 +27,33 @@ const banned = [
   [/financial advice(?! ?,? lend)/i, 'only in the "does not give financial advice" line'],
   [/\bwallet\b/i, 'no wallet is live or licensed; do not present one'],
   [/guarantee/i, 'no guarantees of savings'],
+  // Nothing commercial until Franco says it is public (CLAUDE.md). Shoprite Checkers, Pick n Pay and
+  // Dis-Chem were approved on 1 Oct 2026; any other retailer or partner name still fails.
+  // no prices, and no rand figure attached to a saving.
+  [/\b(clicks|woolworths|spar|usave|boxer|makro|berelo|wigroup|wicode|sa coupons)\b/i, 'no retailer or partner names until Franco says they are public'],
+  [/(?<!up to\s+)\bR\s?\d[\d ]*(?:,\d\d)?\s*(?:pm|p\/m|per month|a month|\/month|once[- ]off|per year|a year)\b/i, 'no prices'],
+  [/\bR\s?\d[\d ]*(?:,\d\d)?\s*(?:saved|in savings|of savings)\b/i, 'no rand figure for a saving; say that savings depend on what you buy'],
+  [/\b(airtime on credit|cashback|cash back)\b/i, 'not offered; do not present it'],
+  [/\bR\s?\d+(?:[ ,]\d+)*\s+off\b/i, 'no rand figure on a coupon; say "Rands off"'],
 ];
 
 const files = pages(ROOT);
 if (files.length === 0) fail('site', 'no pages found');
 let header = null, footer = null;
+
+// A savings figure is allowed only as one of the two capped claims in Hey Fill's rules (up to
+// R1 750 a month for a family of 5-6, up to R750 for 2-4), and only on a page that carries the
+// caveat. Any other rand figure next to "save" fails.
+const CAPS = ['1 750', '750'];
+function savingsClaims(rel, text) {
+  // A claim is the verb ("save your family up to R…") or "savings of R…"; budget lines in the
+  // mockups ("Savings R 500") are not claims.
+  for (const m of text.matchAll(/\b([Ss]aves?|[Ss]avings of)\b([^.\d]{0,40}?)R\s?(\d[\d ]*\d|\d)/g)) {
+    const figure = m[3].trim();
+    if (!CAPS.includes(figure) || !/up to/i.test(m[2])) fail(rel, `savings figure "${m[0]}": only "up to R1 750" or "up to R750" a month`);
+    if (!/Savings depend on what you buy/.test(text)) fail(rel, 'a savings figure needs "Savings depend on what you buy" on the page');
+  }
+}
 
 for (const f of files) {
   const rel = relative(ROOT, f);
@@ -42,7 +64,10 @@ for (const f of files) {
   if (!d || d[1].length < 50 || d[1].length > 170) fail(rel, 'description missing or not 50 to 170 characters');
   if (!/<html lang="en-ZA">/.test(html)) fail(rel, 'lang must be en-ZA');
   if (/<script\b/i.test(html)) fail(rel, 'no scripts: the site ships no JavaScript (CSP script-src none)');
+  if (/\sstyle="/i.test(html) || /<style\b/i.test(html)) fail(rel, 'no inline styles: the CSP allows only /assets/site.css');
+  if (/\son[a-z]+="/i.test(html)) fail(rel, 'no inline event handlers');
   if ((html.match(/<h1\b/g) || []).length !== 1) fail(rel, 'exactly one h1 per page');
+  savingsClaims(rel, text.replace(/\s+/g, ' '));
   for (const [re, why] of banned) {
     const m = text.match(re);
     if (m && !(re.source.startsWith('financial advice') && /does not give financial advice/.test(text))) fail(rel, `"${m[0]}": ${why}`);
@@ -78,7 +103,7 @@ for (const line of redirects) {
   if (/!$/.test(code || '')) fail('_redirects', `forced rule hides website pages: ${line.trim()}`);
   if (!to.startsWith(APP + '/')) fail('_redirects', `rule does not go to the app (${APP}): ${line.trim()}`);
   if (code !== '301') fail('_redirects', `use a permanent 301: ${line.trim()}`);
-  if (['/', '/how-it-works/', '/privacy/', '/contact/', '/rewards/'].includes(from)) fail('_redirects', `rule would take over a website page: ${from}`);
+  if (['/', '/how-it-works/', '/maliscore/', '/privacy/', '/contact/', '/rewards/'].includes(from)) fail('_redirects', `rule would take over a website page: ${from}`);
 }
 for (const must of ['/r/*', '/auth/*', '/pay/*', '/login']) if (!redirects.some((l) => l.trim().split(/\s+/)[0] === must)) fail('_redirects', `missing ${must}: links already sent would break`);
 
