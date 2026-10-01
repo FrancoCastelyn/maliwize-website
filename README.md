@@ -31,17 +31,32 @@ screens; the header, footer, type family and copy rules stay the same around it.
 The site's Content Security Policy allows no inline styles, so bar and counter values are the
 `p05`–`p100` and `n-…` utility classes at the end of `site.css`, never `style=` attributes.
 
+## Retailers and products
+
+`tools/catalogue.py` lists the retailers and products the pages show, from the Hey Fill coupon
+catalogue. Logos and product pictures are files under `assets/` (the CSP allows no other image
+host). To refresh them on a machine that can reach the catalogue's image hosts:
+
+    python3 tools/fetch-catalogue-images.py   # originals into assets/products/originals (git-ignored)
+    node tools/shrink-images.mjs              # 320px WebP files the pages use (needs Playwright)
+    python3 tools/pages.py && node tools/check.mjs
+
+Until a logo or picture is present the page shows the retailer's name, or a plain basket, instead.
+Bump `CSS_VERSION` in `tools/pages.py` whenever `assets/site.css` changes, because `/assets/*` is
+cached for a week.
+
 ## Pages
 
-`/` · `/how-it-works/` · `/maliscore/` · `/rewards/` (Hey Fill Rewards) · `/privacy/` · `/contact/`
-(with `#partners`) · `404.html`.
+`/` · `/how-it-works/` · `/maliscore/` · `/rewards/` (Hey Fill Rewards) · `/contact/` (with `#partners`)
+· `/privacy/` (linked from the footer) · `404.html`.
 
 ## What the check enforces
 
 - Copy rules: nothing ties rewards to spending, no "discount" or "voucher" for grocery coupons, no
   loans or credit, no wallet, no guarantees, "financial advice" only in the line that says
-  Maliwize does not give it, no retailer or partner names, no prices, and no rand figure attached
-  to a saving.
+  Maliwize does not give it, no retailer or partner names beyond the three approved ones, no prices,
+  and no savings figure except "up to R1 750" or "up to R750" a month on a page that says savings
+  depend on what you buy.
 - One `h1`, a title and a description of search-friendly length, `lang="en-ZA"`, no scripts, no
   inline styles or event handlers (the CSP would block them).
 - Every internal link and image resolves; every sitemap entry exists; the header and footer are

@@ -11,6 +11,8 @@ Progress bars take a `p05` to `p100` class and counters an `n-…` class, becaus
 Security Policy allows no inline styles. Both sets of classes live in assets/site.css.
 """
 
+from catalogue import product_img
+
 HF_MARK = (
     '<svg viewBox="41.76 22.59 683.12 620.38" aria-hidden="true" focusable="false">'
     '<path fill="#0076CA" d="M188.85 360.84v84.39c0 40.62-32.94 73.54-73.54 73.54-20.31 0-38.69-8.23-52.01-21.54-13.31-13.31-21.54-31.69-21.54-52.01V287.3c0 40.61 32.92 73.54 73.54 73.54h73.55z"/>'
@@ -181,10 +183,10 @@ def shop():
         '<small class="sub">Builder tier · 9 of 14 coupons open</small>'
         '<div class="chips"><span class="on">All</span><span>Rands off</span><span>Groceries</span><span>Baby</span><span>Home</span></div>'
         '<div class="grid2">'
-        + tile("🥛", "Rands off", "Long-life milk, 6 pack", "Groceries", "added")
-        + tile("🧴", "Rands off", "Washing powder, 2 kg", "Home", "add")
-        + tile("🍞", "Rands off", "Brown bread, 700 g", "Groceries", "added")
-        + tile("🧷", "Rands off", "Nappies, jumbo pack", "Reach Achiever in Maliwize to unlock", "locked")
+        + tile(product_img("milk"), "Rands off", "Parmalat Everfresh Milk 6 x 1L", "Pick n Pay", "added")
+        + tile(product_img("peanut"), "Rands off", "Black Cat Peanut Butter 800g", "Pick n Pay", "add")
+        + tile(product_img("smartfood"), "Rands off", "Futurelife Smartfood 500g", "Pick n Pay", "added")
+        + tile(product_img("washing"), "Rands off", "Bio Classic Washing Powder 3kg", "Reach Achiever in Maliwize to unlock", "locked")
         + '</div></div>'
         '<div class="basket"><span>2 coupons picked</span><span>Get one code ›</span></div>' + tabbar("rewards")
     )
@@ -198,9 +200,9 @@ def code():
         '<div class="digits">9021 4483 7726</div><div class="ok">● Ready to show at the till</div>'
         '<small>Show this at the till.</small></div>'
         '<div class="card"><div class="ch"><b>In this code</b></div>'
-        '<div class="crow"><span class="off">Rands off</span><span>Long-life milk, 6 pack</span></div>'
-        '<div class="crow"><span class="off">Rands off</span><span>Brown bread, 700 g</span></div>'
-        '<div class="crow"><span class="off">Rands off</span><span>Washing powder, 2 kg</span></div></div>'
+        '<div class="crow"><span class="off">Rands off</span><span>Parmalat Everfresh Milk 6 x 1L</span></div>'
+        '<div class="crow"><span class="off">Rands off</span><span>Futurelife Smartfood 500g</span></div>'
+        '<div class="crow"><span class="off">Rands off</span><span>All Gold Squeeze Bottle 500ml</span></div></div>'
         '<small class="foot">Savings depend on what you buy. Grocery coupons only.</small>'
         '</div>' + tabbar("rewards")
     )
@@ -279,8 +281,8 @@ def mini_score():
 def mini_coupons():
     return (
         '<div class="mini hf" aria-hidden="true"><div class="grid2">'
-        '<div class="ctile"><div class="pic">🥛</div><span class="off">Rands off</span><b>Long-life milk, 6 pack</b><div class="add on">✓ Added</div></div>'
-        '<div class="ctile locked"><div class="pic">🧷</div><span class="off">Rands off</span><b>Nappies, jumbo pack</b><small>Reach Achiever in Maliwize to unlock</small></div>'
+        f'<div class="ctile"><div class="pic">{product_img("milk")}</div><span class="off">Rands off</span><b>Parmalat Everfresh Milk 6 x 1L</b><div class="add on">✓ Added</div></div>'
+        f'<div class="ctile locked"><div class="pic">{product_img("washing")}</div><span class="off">Rands off</span><b>Bio Classic Washing Powder 3kg</b><small>Reach Achiever in Maliwize to unlock</small></div>'
         '</div></div>'
     )
 

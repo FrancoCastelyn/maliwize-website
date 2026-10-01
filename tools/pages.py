@@ -9,6 +9,7 @@ mockups come from tools/phones.py.
 """
 from pathlib import Path
 
+from catalogue import product_grid, retailers_row
 from phones import HF_MARK, MW_MARK, mini_budget, mini_coupons, mini_score, screen
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -17,7 +18,7 @@ SITE = "https://maliwize.co.za"
 # any other value.
 APP = "https://app.maliwize.co.za"
 # Bump when assets/site.css changes: /assets/* is cached for a week (netlify.toml).
-CSS_VERSION = "2026-10-01b"
+CSS_VERSION = "2026-10-01c"
 
 NAV = [("/", "Home"), ("/how-it-works/", "How it works"), ("/maliscore/", "Maliscore"),
        ("/rewards/", "Rewards"), ("/contact/", "Contact")]
@@ -113,6 +114,7 @@ def page(path, title, description, body, hero, theme="#0E3A52"):
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/contact/">Contact</a></li>
           <li><a href="/contact/#partners">For partners</a></li>
+          <li><a href="mailto:support@maliwize.co.za">support@maliwize.co.za</a></li>
         </ul>
       </div>
     </div>
@@ -224,15 +226,21 @@ HOME = page(
             <li>More open as you climb</li>
             <li>Grocery coupons</li>
           </ul>
+          <p class="hf-stat reveal"><span class="hf-stat-k">Save your family up to</span><span class="hf-stat-n count n-1750"><span class="static">R1 750</span></span><span class="hf-stat-u">a month on groceries</span></p>
+          <p class="hf-caveat reveal">Up to R1 750 a month for a family of five or six, and up to R750 for a family of two to four. Savings depend on what you buy. Grocery coupons only.</p>
           <div class="actions reveal">
             <a class="btn white" href="/rewards/">How rewards work</a>
           </div>
-          <p class="hf-caveat reveal">Savings depend on what you buy. Grocery coupons only.</p>
         </div>
         <div class="hf-visual reveal">
           <span class="hf-blob" aria-hidden="true"></span>
           {screen("shop", "tilt-r mid")}
         </div>
+      </div>
+      <div class="wrap hf-shelf">
+        <p class="hf-shelf-k reveal">Use your coupons at</p>
+        {retailers_row()}
+        {product_grid(["milk", "peanut", "smartfood", "washing"])}
       </div>
     </section>
 """
@@ -418,6 +426,14 @@ REWARDS = page(
     </section>
 """
     + section(
+        f"""        <p class="label reveal">Coupons on everyday items</p>
+        <h2 class="reveal">Rands off the things you already buy</h2>
+        <p class="lead reveal">Use your coupons at these stores. The coupons on offer change, and your tier decides which are open to you.</p>
+        {retailers_row()}
+        {product_grid(["milk", "peanut", "allgold", "washing", "smartfood", "oats", "crunch", "worcester"])}""",
+        "shelf-block",
+    )
+    + section(
         """        <p class="label reveal">Your tier opens coupons</p>
         <h2 class="reveal">Four tiers, earned by good habits</h2>
         <p class="lead reveal">Every tier opens coupons. Capturing your spending, staying inside your budget lines and reaching your savings move you up. The amount you spend never does.</p>
@@ -427,12 +443,12 @@ REWARDS = page(
           <li><b>Achiever</b><span>from 300 points</span></li>
           <li><b>Champion</b><span>from 600 points</span></li>
         </ol>
-        <p class="hf-caveat dark reveal">Savings depend on what you buy. Grocery coupons only. A coupon is rands off a selected item at a participating store, never cash.</p>""",
+        <p class="hf-caveat dark reveal">Up to R1 750 a month for a family of five or six, and up to R750 for a family of two to four. Savings depend on what you buy. Grocery coupons only. A coupon is rands off a selected item at a participating store, never cash.</p>""",
     ),
     hero(
         '<p class="hf-logo"><img src="/assets/heyfill-lockup-white.svg" alt="Hey Fill" width="172" height="54"><span>Rewards, inside Maliwize</span></p>\n        <h1 class="hf-head"><span class="blk red">Rands off</span> <span class="blk white">selected groceries.</span><br>Opened by your Maliscore.</h1>',
         "Pick coupons, take one code to the till. Earned by budgeting and saving, never by spending more.",
-        '<ul class="hf-pills"><li>One basket, one code</li><li>More open as you climb</li><li>Grocery coupons</li></ul>',
+        '<p class="hf-stat"><span class="hf-stat-k">Save your family up to</span><span class="hf-stat-n count n-1750"><span class="static">R1 750</span></span><span class="hf-stat-u">a month on groceries</span></p>\n        <ul class="hf-pills"><li>One basket, one code</li><li>More open as you climb</li><li>Grocery coupons</li></ul>',
         small=True,
         status="Opening soon",
         cls="hf-hero",
@@ -458,8 +474,8 @@ PRIVACY = page(
         <h2>Your rights</h2>
         <p>You can ask to see the information we hold about you, have it corrected, or have your account and data deleted. You can also complain to the Information Regulator.</p>
         <p>Questions that are not about your data: <a href="/contact/">contact us</a>.</p>
-        <h2>Contact our Information Officer</h2>
-        <p>Email <a href="mailto:privacy@maliwize.co.za">privacy@maliwize.co.za</a>.</p>
+        <h2>Questions about your data</h2>
+        <p>Email <a href="mailto:support@maliwize.co.za">support@maliwize.co.za</a>.</p>
         </div>""",
     ),
     hero("<h1>Privacy at Maliwize</h1>", "Your money is personal. Here is how we look after the information that goes with it.", small=True),
@@ -479,11 +495,11 @@ CONTACT = page(
           </div>
           <div class="card reveal">
             <h3>Privacy and your data</h3>
-            <p>To see, correct or delete your information, email <a href="mailto:privacy@maliwize.co.za">privacy@maliwize.co.za</a>.</p>
+            <p>To see, correct or delete your information, email <a href="mailto:support@maliwize.co.za">support@maliwize.co.za</a>.</p>
           </div>
           <div class="card reveal">
             <h3>Help with your account</h3>
-            <p>Your settings, inbox and subscription are under Me in the app. <a href="{APP}/auth">Sign in</a>.</p>
+            <p>Your settings, inbox and subscription are under Me in the app. <a href="{APP}/auth">Sign in</a>, or email <a href="mailto:support@maliwize.co.za">support@maliwize.co.za</a>.</p>
           </div>
         </div>""",
     )
@@ -491,7 +507,7 @@ CONTACT = page(
         """        <p class="label reveal">For partners</p>
         <h2 class="reveal">Maliwize for your staff or your clients</h2>
         <p class="lead reveal">Employers, debt counsellors and other organisations bring members to Maliwize with an invitation link. If that sounds like your organisation, we would like to hear from you.</p>
-        <p class="reveal muted">For now, speak to your contact at Maliwize.</p>""",
+        <p class="reveal"><a class="btn teal" href="mailto:info@maliwize.co.za">Email info@maliwize.co.za</a></p>""",
         id_="partners",
     ),
     hero("<h1>Contact us</h1>", "We read every message.", small=True),
