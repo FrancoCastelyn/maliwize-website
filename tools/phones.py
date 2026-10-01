@@ -211,13 +211,11 @@ def switch_on():
         '<div class="app hf">'
         '<header class="ah2"><span class="back">‹</span><b>Hey Fill Rewards</b></header>'
         f'<div class="hfhero"><span class="hfm">{HF_MARK}</span><b>Switch on your rewards</b><small>Rands off selected groceries. Your tier opens coupons today, and budgeting opens more.</small></div>'
-        '<div class="card"><div class="ch"><b>What is shared</b></div>'
-        '<div class="rule"><span class="ic">✓</span><span>Your tier</span></div>'
-        '<div class="rule"><span class="ic">✓</span><span>Your name and mobile number</span></div>'
-        '<div class="rule"><span class="ic">✓</span><span>Your ID number, so coupons can be issued to you</span></div>'
-        '<div class="rule"><span class="ic no">✕</span><span>Never your transactions, balances or budget</span></div></div>'
-        '<div class="card consent"><span class="box">✓</span><span>I agree that Maliwize shares my name, mobile number and ID number with the rewards layer, so coupons can be issued to me.</span></div>'
-        '<div class="btn hfb">Switch on rewards</div><small class="foot center">Switch off any time in Settings</small>'
+        '<div class="card"><div class="ch"><b>How it works</b></div>'
+        '<div class="rule"><span class="ic">1</span><span>Pick the coupons you want</span></div>'
+        '<div class="rule"><span class="ic">2</span><span>Take one code to the till</span></div>'
+        '<div class="rule"><span class="ic">3</span><span>More open as your tier grows</span></div></div>'
+        '<div class="btn hfb">Switch on rewards</div>'
         '</div>' + tabbar("rewards")
     )
 
@@ -294,7 +292,7 @@ SCREENS = {
     "maliscore": (maliscore, "The Maliscore screen: the score, the tier, the way to the next tier, and what earns points"),
     "shop": (shop, "Hey Fill Rewards inside Maliwize: grocery coupons as tiles, with a locked one that opens at a higher tier"),
     "code": (code, "One code at the till for the coupons picked, with a barcode and its expiry"),
-    "switch_on": (switch_on, "Switching on Hey Fill Rewards: exactly what is shared, and a separate consent"),
+    "switch_on": (switch_on, "Switching on Hey Fill Rewards in the app: pick coupons, take one code to the till"),
     "close": (close_month, "Closing the month: which lines were kept inside their limit, and what carries forward"),
     "first_budget": (first_budget, "Your first budget, filled in from three questions"),
 }

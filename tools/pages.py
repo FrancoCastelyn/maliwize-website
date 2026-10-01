@@ -20,7 +20,9 @@ APP = "https://app.maliwize.co.za"
 CSS_VERSION = "2026-10-01b"
 
 NAV = [("/", "Home"), ("/how-it-works/", "How it works"), ("/maliscore/", "Maliscore"),
-       ("/rewards/", "Rewards"), ("/privacy/", "Privacy"), ("/contact/", "Contact")]
+       ("/rewards/", "Rewards"), ("/contact/", "Contact")]
+# Every page in the sitemap; Privacy is linked from the footer rather than the main menu.
+PAGES = [href for href, _ in NAV] + ["/privacy/"]
 
 ICONS = {
     "lock": '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2.5"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
@@ -140,11 +142,6 @@ def section(inner, cls="", id_=""):
     return f'    <section class="block{" " + cls if cls else ""}"{i}>\n      <div class="wrap">\n{inner}\n      </div>\n    </section>'
 
 
-LOOP = f"""        <ol class="loop" aria-label="How the parts connect">
-          <li class="reveal"><span class="loop-k">1</span><b>Budget and capture</b><span>Plan against your take-home pay and write down what you spend.</span></li>
-          <li class="reveal"><span class="loop-k">2</span><b>Your Maliscore grows</b><span>Kept lines, reached savings and daily check-ins earn points.</span></li>
-          <li class="reveal"><span class="loop-k">3</span><b>Coupons open</b><span>Your tier opens rands off selected groceries. Nothing opens because you spend.</span></li>
-        </ol>"""
 
 
 HOME = page(
@@ -152,13 +149,6 @@ HOME = page(
     "Maliwize: know where your money goes, and get rewarded for it",
     "A budget you can keep, a Maliscore that grows with good habits, and grocery coupons that open as it does. A South African budgeting app, built for any phone.",
     section(
-        f"""        <p class="label reveal">One app, one loop</p>
-        <h2 class="reveal">Good habits move you up. Moving up opens coupons.</h2>
-        <p class="lead reveal">Maliwize is a budget you can actually keep, a score that notices when you keep it, and grocery coupons that open as the score grows. Each part feeds the next, and none of it rewards spending.</p>
-{LOOP}""",
-        "loop-block",
-    )
-    + section(
         f"""        <p class="label reveal">What Maliwize does</p>
         <h2 class="reveal">Three things, working together</h2>
         <div class="features">
@@ -212,7 +202,7 @@ HOME = page(
         <div class="score-copy">
           <p class="label reveal">Your Maliscore</p>
           <h2 class="reveal">A score for how you handle money, never for how much you spend.</h2>
-          <p class="lead reveal">It goes up when you capture your spending, keep a line inside its limit, reach your savings and check in. It never looks at who you are, and the amount spent earns nothing.</p>
+          <p class="lead reveal">It goes up when you capture your spending, keep a line inside its limit, reach your savings and check in. The amount you spend earns nothing.</p>
           <ol class="tiers reveal" aria-label="The four tiers">
             <li><b>Starter</b><span>from 0 points</span></li>
             <li><b>Builder</b><span>from 100 points</span></li>
@@ -232,7 +222,7 @@ HOME = page(
           <ul class="hf-pills reveal">
             <li>One basket, one code</li>
             <li>More open as you climb</li>
-            <li>Off until you switch it on</li>
+            <li>Grocery coupons</li>
           </ul>
           <div class="actions reveal">
             <a class="btn white" href="/rewards/">How rewards work</a>
@@ -246,18 +236,6 @@ HOME = page(
       </div>
     </section>
 """
-    + section(
-        f"""        <p class="label reveal">Your money is personal</p>
-        <h2 class="reveal">Built to earn your trust, not to assume it</h2>
-        <div class="trust">
-          <div class="trust-card reveal"><span class="ic">{ICONS['eye']}</span><h3>Consent you can see</h3><p>Each thing you agree to is a separate choice, recorded with the date and the version you saw. Optional ones can be withdrawn in Settings.</p></div>
-          <div class="trust-card reveal"><span class="ic">{ICONS['lock']}</span><h3>ID numbers encrypted</h3><p>Where a service needs your ID number, it is stored encrypted and only ever shown to you masked.</p></div>
-          <div class="trust-card reveal"><span class="ic">{ICONS['bank']}</span><h3>No bank login</h3><p>You capture what you spend, or import a statement you downloaded yourself. Nothing asks for your banking password.</p></div>
-          <div class="trust-card reveal"><span class="ic">{ICONS['bin']}</span><h3>Your data, your call</h3><p>See what we hold, have it corrected, or delete your account and its data. You can also complain to the Information Regulator.</p></div>
-        </div>
-        <p class="reveal"><a class="more" href="/privacy/">How Maliwize handles your information {ICONS['arrow']}</a></p>""",
-        "trust-block",
-    )
     + section(
         f"""        <div class="cta reveal">
           <div>
@@ -279,7 +257,7 @@ HOME = page(
         <ul class="proof" aria-label="In short">
           <li>{ICONS['bank']}No bank login needed</li>
           <li>{ICONS['phone']}No app to download</li>
-          <li>{ICONS['shield']}Consent you can see</li>
+          <li>{ICONS['check']}Rewards for good habits</li>
         </ul>""",
         visual=f"""
         <div class="device-stack">
@@ -301,7 +279,7 @@ HOW = page(
             <div class="walk-copy reveal">
               <span class="walk-k">1</span>
               <h2>Three quick questions</h2>
-              <p>Whether you already keep a budget, roughly what comes in and what goes on groceries, and when you are paid. A first budget is filled in from your answers, planned against your take-home pay, with savings as a line of its own. It is a typical split, not advice: every answer is an estimate you can change.</p>
+              <p>Whether you already budget, roughly what comes in and goes on groceries, and when you are paid. Your first budget is filled in from the answers: a typical split, not advice, that you can change.</p>
             </div>
             <div class="walk-visual crop reveal">{screen("first_budget", "tilt-r")}</div>
           </li>
@@ -309,7 +287,7 @@ HOW = page(
             <div class="walk-copy reveal">
               <span class="walk-k">2</span>
               <h2>Capture what you spend</h2>
-              <p>Amount, place and budget line, in a few taps. Card or cash, a tip, a bill split with friends: you capture only your share. Nothing asks for your bank login. If you prefer, import the statement you download from your banking app, as CSV or Excel.</p>
+              <p>Amount, place and budget line, in a few taps. Card or cash, a tip, a bill split with friends. Or import the statement you download from your banking app.</p>
             </div>
             <div class="walk-visual crop reveal">{screen("capture", "tilt-l")}</div>
           </li>
@@ -333,7 +311,7 @@ HOW = page(
             <div class="walk-copy reveal">
               <span class="walk-k">5</span>
               <h2>Switch on rewards when you are ready</h2>
-              <p>Rewards are off until you switch them on in the app, with their own consent that says exactly what is shared. Then your tier opens grocery coupons, and more open as it grows. Switch off any time in Settings.</p>
+              <p>Your tier opens grocery coupons in Hey Fill Rewards, and more open as it grows.</p>
               <a class="more" href="/rewards/">About Hey Fill Rewards {ICONS['arrow']}</a>
             </div>
             <div class="walk-visual crop reveal">{screen("switch_on", "tilt-r")}</div>
@@ -395,8 +373,7 @@ MALISCORE = page(
           <div class="rule-card reveal"><span class="ic">{ICONS['signal']}</span><h3>Reaching your savings</h3><p>Putting away what you planned to save earns once a month. Savings is a line of its own, and the only one where reaching the limit is the goal.</p></div>
           <div class="rule-card reveal"><span class="ic">{ICONS['eye']}</span><h3>Checking in and setting up</h3><p>Opening the app each day, setting your first budget and importing a statement each earn too. The exact points for every rule are shown in the app, under What earns points.</p></div>
         </div>
-        <div class="promise reveal"><p><b>Never for spending more.</b> The amount you spend earns nothing. Spending less than you planned earns, because you kept the line. Many of our members are working their way out of debt, and nothing in Maliwize nudges anyone to buy more.</p></div>
-        <div class="promise reveal"><p><b>Never for who you are.</b> The Maliscore looks at behaviour only: what you capture, what you keep, what you save. It does not look at your age, your gender, where you live or anything about you other than how you handle your money in the app.</p></div>""",
+        <div class="promise reveal"><p><b>Never for spending more.</b> The amount you spend earns nothing. Spending less than you planned earns, because you kept the line.</p></div>""",
     )
     + section(
         f"""        <div class="cta reveal">
@@ -409,7 +386,7 @@ MALISCORE = page(
     ),
     hero(
         "<h1>Your Maliscore</h1>",
-        "A score for how you handle money, built from what you do in the app. Never for how much you spend, and never for who you are.",
+        "A score for how you handle money, built from what you do in the app. Never for how much you spend.",
         small=True,
     ),
 )
@@ -423,7 +400,7 @@ REWARDS = page(
         <ol class="hf-steps">
           <li class="hf-step reveal">
             <span class="hf-k">1</span>
-            <div><h2>Switch it on</h2><p>Rewards are off until you switch them on in the Rewards tab, with a consent of their own that says exactly what is shared. Switch off any time in Settings.</p></div>
+            <div><h2>Switch it on</h2><p>Open the Rewards tab in Maliwize and switch on Hey Fill Rewards. It takes a minute.</p></div>
             {screen("switch_on", "tilt-r small")}
           </li>
           <li class="hf-step reveal">
@@ -450,26 +427,12 @@ REWARDS = page(
           <li><b>Achiever</b><span>from 300 points</span></li>
           <li><b>Champion</b><span>from 600 points</span></li>
         </ol>
-        <div class="promise hfp reveal"><p><b>No spend targets, ever.</b> Coupons open because you budget and save, not because you buy more. A locked coupon never asks you to spend to unlock it.</p></div>""",
-    )
-    + section(
-        f"""        <div class="grid two">
-          <div class="card reveal">
-            <h3>You decide when it is on</h3>
-            <p>Switching on shares your tier, name, mobile number and ID number with the rewards layer, so coupons can be issued to you. Never your transactions, balances or budget. Switch it off any time in Settings.</p>
-          </div>
-          <div class="card reveal">
-            <h3>Two products that recognise each other</h3>
-            <p>Hey Fill is its own product, with its own account and its own privacy terms. Inside Maliwize it is the rewards layer: your Maliwize account stays yours, your Hey Fill account stays yours, and your tier, with the name, mobile number and ID number needed to issue coupons to you, is all that travels between them.</p>
-          </div>
-        </div>
-        <p class="hf-caveat dark reveal">Savings depend on what you buy. Grocery coupons only. A coupon is rands off a selected item at a participating store, never cash.</p>
-        <p class="reveal"><a class="more" href="/privacy/">What is shared, in full {ICONS['arrow']}</a></p>""",
+        <p class="hf-caveat dark reveal">Savings depend on what you buy. Grocery coupons only. A coupon is rands off a selected item at a participating store, never cash.</p>""",
     ),
     hero(
         '<p class="hf-logo"><img src="/assets/heyfill-lockup-white.svg" alt="Hey Fill" width="172" height="54"><span>Rewards, inside Maliwize</span></p>\n        <h1 class="hf-head"><span class="blk red">Rands off</span> <span class="blk white">selected groceries.</span><br>Opened by your Maliscore.</h1>',
         "Pick coupons, take one code to the till. Earned by budgeting and saving, never by spending more.",
-        '<ul class="hf-pills"><li>One basket, one code</li><li>More open as you climb</li><li>Off until you switch it on</li></ul>',
+        '<ul class="hf-pills"><li>One basket, one code</li><li>More open as you climb</li><li>Grocery coupons</li></ul>',
         small=True,
         status="Opening soon",
         cls="hf-hero",
@@ -480,7 +443,7 @@ REWARDS = page(
 PRIVACY = page(
     "/privacy/",
     "Privacy at Maliwize: how your information is handled",
-    "How Maliwize handles your personal information under POPIA: what we collect, why, who it is shared with, and your rights.",
+    "How Maliwize handles your personal information: what we collect, why, and how to see, correct or delete it.",
     section(
         """        <div class="prose">
         <p class="note"><b>Summary, not the policy.</b> This page explains how Maliwize treats your information in plain words. The full privacy policy you agree to is shown in the app when you sign up, and it is the one that applies.</p>
@@ -488,14 +451,10 @@ PRIVACY = page(
         <ul>
           <li><b>Your account details:</b> name, email, mobile number, to run your account and reach you.</li>
           <li><b>Your budget and what you capture:</b> to show you your budget and work out your Maliscore.</li>
-          <li><b>Your South African ID number</b>, only where a service needs it. It is stored encrypted and only ever shown to you masked.</li>
+          <li><b>Your South African ID number</b>, only where a service needs it. It is stored encrypted.</li>
         </ul>
-        <h2>Consent you can see</h2>
-        <p>Each thing you agree to is a separate choice, recorded with the date and the version you saw: the terms, the privacy policy, rewards, and marketing messages. Optional ones can be withdrawn in Settings.</p>
-        <h2>What is shared</h2>
-        <p>If you switch on rewards, your tier, name, mobile number and ID number go to the rewards layer so coupons can be issued to you. Never your transactions, balances or budget. Nothing is sold, and nothing is used to target you by who you are. <a href="/rewards/">How Hey Fill Rewards works</a>.</p>
-        <h2>No bank login</h2>
-        <p>Maliwize does not ask for your banking password. You capture what you spend, or import a statement you downloaded yourself.</p>
+        <h2>Rewards</h2>
+        <p>If you switch on Hey Fill Rewards, the details needed to run your rewards are shared with Hey Fill. The privacy policy in the app sets out exactly what.</p>
         <h2>Your rights</h2>
         <p>You can ask to see the information we hold about you, have it corrected, or have your account and data deleted. You can also complain to the Information Regulator.</p>
         <p>Questions that are not about your data: <a href="/contact/">contact us</a>.</p>
@@ -524,15 +483,15 @@ CONTACT = page(
           </div>
           <div class="card reveal">
             <h3>Help with your account</h3>
-            <p>Your inbox, consents and data are under Me in the app, including a copy of what we hold and the option to delete your account. <a href="{APP}/auth">Sign in</a>.</p>
+            <p>Your settings, inbox and subscription are under Me in the app. <a href="{APP}/auth">Sign in</a>.</p>
           </div>
         </div>""",
     )
     + section(
         """        <p class="label reveal">For partners</p>
         <h2 class="reveal">Maliwize for your staff or your clients</h2>
-        <p class="lead reveal">Employers, debt counsellors and other organisations bring members to Maliwize with an invitation that carries a reference code, so a member's first budget is not a blank page. If that sounds like your organisation, we would like to hear from you.</p>
-        <p class="reveal muted">Partner details are shared directly while Maliwize opens. If someone at Maliwize has already been in touch, reply to them.</p>""",
+        <p class="lead reveal">Employers, debt counsellors and other organisations bring members to Maliwize with an invitation link. If that sounds like your organisation, we would like to hear from you.</p>
+        <p class="reveal muted">For now, speak to your contact at Maliwize.</p>""",
         id_="partners",
     ),
     hero("<h1>Contact us</h1>", "We read every message.", small=True),
@@ -565,6 +524,6 @@ for rel, html in OUT.items():
 
 (ROOT / "sitemap.xml").write_text(
     '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    + "".join(f"  <url><loc>{SITE}{href}</loc></url>\n" for href, _ in NAV)
+    + "".join(f"  <url><loc>{SITE}{href}</loc></url>\n" for href in PAGES)
     + "</urlset>\n", encoding="utf-8")
 print("wrote", len(OUT), "pages and sitemap.xml")
