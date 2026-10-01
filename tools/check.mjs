@@ -34,6 +34,7 @@ const banned = [
   [/\bsaves?\b(?: you)?(?: up to)?\s+R\s?\d/i, 'no rand figure for a saving; say that savings depend on what you buy'],
   [/\bR\s?\d[\d ]*(?:,\d\d)?\s*(?:saved|in savings|of savings)\b/i, 'no rand figure for a saving; say that savings depend on what you buy'],
   [/\b(airtime on credit|cashback|cash back)\b/i, 'not offered; do not present it'],
+  [/\bR\s?\d+(?:[ ,]\d+)*\s+off\b/i, 'no rand figure on a coupon; say "Rands off"'],
 ];
 
 const files = pages(ROOT);

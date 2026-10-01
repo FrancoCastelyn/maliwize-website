@@ -71,7 +71,7 @@ def bar(p, tone=""):
 
 def line(name, words, p, tone="", savings=False):
     return (
-        f'<div class="ln"><div class="ln-h"><span>{"🐖 " if savings else ""}{name}</span>'
+        f'<div class="ln"><div class="ln-h"><span>{name}</span>'
         f'<span class="{tone or ("green" if savings else "")}">{words}</span></div>{bar(p, tone)}</div>'
     )
 
@@ -181,10 +181,10 @@ def shop():
         '<small class="sub">Builder tier · 9 of 14 coupons open</small>'
         '<div class="chips"><span class="on">All</span><span>Rands off</span><span>Groceries</span><span>Baby</span><span>Home</span></div>'
         '<div class="grid2">'
-        + tile("🥛", "R15 off", "Long-life milk, 6 pack", "Groceries", "added")
-        + tile("🧴", "R20 off", "Washing powder, 2 kg", "Home", "add")
-        + tile("🍞", "R10 off", "Brown bread, 700 g", "Groceries", "added")
-        + tile("🧷", "R30 off", "Nappies, jumbo pack", "Reach Achiever in Maliwize to unlock", "locked")
+        + tile("🥛", "Rands off", "Long-life milk, 6 pack", "Groceries", "added")
+        + tile("🧴", "Rands off", "Washing powder, 2 kg", "Home", "add")
+        + tile("🍞", "Rands off", "Brown bread, 700 g", "Groceries", "added")
+        + tile("🧷", "Rands off", "Nappies, jumbo pack", "Reach Achiever in Maliwize to unlock", "locked")
         + '</div></div>'
         '<div class="basket"><span>2 coupons picked</span><span>Get one code ›</span></div>' + tabbar("rewards")
     )
@@ -195,12 +195,12 @@ def code():
         '<div class="app hf">'
         '<header class="ah2"><span class="back">‹</span><b>Your code</b></header>'
         '<div class="codecard"><small>One code for 3 coupons</small><div class="barcode"></div>'
-        '<div class="digits">9021 4483 7726</div><div class="ok">● Active · expires in 23:58</div>'
-        '<small>Show this at the till. Works even on a slow connection.</small></div>'
+        '<div class="digits">9021 4483 7726</div><div class="ok">● Ready to show at the till</div>'
+        '<small>Show this at the till.</small></div>'
         '<div class="card"><div class="ch"><b>In this code</b></div>'
-        '<div class="crow"><span class="off">R15 off</span><span>Long-life milk, 6 pack</span></div>'
-        '<div class="crow"><span class="off">R10 off</span><span>Brown bread, 700 g</span></div>'
-        '<div class="crow"><span class="off">R20 off</span><span>Washing powder, 2 kg</span></div></div>'
+        '<div class="crow"><span class="off">Rands off</span><span>Long-life milk, 6 pack</span></div>'
+        '<div class="crow"><span class="off">Rands off</span><span>Brown bread, 700 g</span></div>'
+        '<div class="crow"><span class="off">Rands off</span><span>Washing powder, 2 kg</span></div></div>'
         '<small class="foot">Savings depend on what you buy. Grocery coupons only.</small>'
         '</div>' + tabbar("rewards")
     )
@@ -210,14 +210,14 @@ def switch_on():
     return (
         '<div class="app hf">'
         '<header class="ah2"><span class="back">‹</span><b>Hey Fill Rewards</b></header>'
-        f'<div class="hfhero"><span class="hfm">{HF_MARK}</span><b>Switch on Hey Fill Rewards</b><small>Rands off selected groceries, opened by your Maliscore.</small></div>'
+        f'<div class="hfhero"><span class="hfm">{HF_MARK}</span><b>Switch on your rewards</b><small>Rands off selected groceries. Your tier opens coupons today, and budgeting opens more.</small></div>'
         '<div class="card"><div class="ch"><b>What is shared</b></div>'
         '<div class="rule"><span class="ic">✓</span><span>Your tier</span></div>'
         '<div class="rule"><span class="ic">✓</span><span>Your name and mobile number</span></div>'
         '<div class="rule"><span class="ic">✓</span><span>Your ID number, so coupons can be issued to you</span></div>'
         '<div class="rule"><span class="ic no">✕</span><span>Never your transactions, balances or budget</span></div></div>'
-        '<div class="card consent"><span class="box">✓</span><span>I have read the Hey Fill Rewards terms and I agree</span></div>'
-        '<div class="btn hfb">Switch on</div><small class="foot center">Switch off any time in Settings</small>'
+        '<div class="card consent"><span class="box">✓</span><span>I agree that Maliwize shares my name, mobile number and ID number with the rewards layer, so coupons can be issued to me.</span></div>'
+        '<div class="btn hfb">Switch on rewards</div><small class="foot center">Switch off any time in Settings</small>'
         '</div>' + tabbar("rewards")
     )
 
@@ -244,16 +244,16 @@ def close_month():
 
 def first_budget():
     def row(name, amount, savings=False):
-        return f'<div class="crow"><span>{"🐖 " if savings else ""}{name}</span><b>{amount}</b></div>'
+        return f'<div class="crow"><span>{name}</span><b>{amount}</b></div>'
 
     return (
         '<div class="app">'
         '<header class="ah2"><span class="back">‹</span><b>Your first budget</b></header>'
-        '<small class="sub">Filled in from your answers. Adjust anything, then save.</small>'
+        '<small class="sub">Filled in from your answers: a typical split, not advice.</small>'
         '<div class="hc"><small>Take-home pay this month</small><div class="amt">R 9 800</div>'
         '<div class="hc-stats"><span>Planned<b>R 9 300</b></span><span>Left to plan<b>R 500</b></span></div></div>'
         '<div class="card"><div class="ch"><b>Planned</b></div>'
-        + row("Rent", "R 4 500") + row("Groceries", "R 3 000") + row("Transport", "R 1 000") + row("Electricity", "R 600")
+        + row("Rent", "R 4 500") + row("Groceries", "R 2 450") + row("Transport", "R 1 000") + row("Electricity", "R 600")
         + row("Airtime and data", "R 250") + row("Savings", "R 500", savings=True)
         + '</div><div class="btn">Save my budget</div>'
         '<small class="foot center">Money with no line gets a nudge to find one. Savings is a line of its own.</small>'
@@ -281,8 +281,8 @@ def mini_score():
 def mini_coupons():
     return (
         '<div class="mini hf" aria-hidden="true"><div class="grid2">'
-        '<div class="ctile"><div class="pic">🥛</div><span class="off">R15 off</span><b>Long-life milk, 6 pack</b><div class="add on">✓ Added</div></div>'
-        '<div class="ctile locked"><div class="pic">🧷</div><span class="off">R30 off</span><b>Nappies, jumbo pack</b><small>Reach Achiever to unlock</small></div>'
+        '<div class="ctile"><div class="pic">🥛</div><span class="off">Rands off</span><b>Long-life milk, 6 pack</b><div class="add on">✓ Added</div></div>'
+        '<div class="ctile locked"><div class="pic">🧷</div><span class="off">Rands off</span><b>Nappies, jumbo pack</b><small>Reach Achiever in Maliwize to unlock</small></div>'
         '</div></div>'
     )
 
