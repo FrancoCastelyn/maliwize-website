@@ -184,7 +184,7 @@ def shop():
         '<div class="chips"><span class="on">All</span><span>Rands off</span><span>Groceries</span><span>Baby</span><span>Home</span></div>'
         '<div class="grid2">'
         + tile(product_img("milk"), "Rands off", "Parmalat Everfresh Milk 6 x 1L", "Pick n Pay", "added")
-        + tile(product_img("peanut"), "Rands off", "Black Cat Peanut Butter 800g", "Pick n Pay", "add")
+        + tile(product_img("maize"), "Rands off", "Pride Super Maize Meal 12.5kg", "Shoprite Checkers", "add")
         + tile(product_img("smartfood"), "Rands off", "Futurelife Smartfood 500g", "Pick n Pay", "added")
         + tile(product_img("washing"), "Rands off", "Bio Classic Washing Powder 3kg", "Reach Achiever in Maliwize to unlock", "locked")
         + '</div></div>'

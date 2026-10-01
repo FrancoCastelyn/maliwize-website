@@ -16,7 +16,7 @@ import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from catalogue import PRODUCTS, RETAILERS, ROOT  # noqa: E402
+from catalogue import PRODUCTS, RETAILERS, ROOT, SHOW_LOGOS  # noqa: E402
 
 FORCE = "--force" in sys.argv
 MAX_BYTES = 3_000_000  # originals; shrink-images.mjs makes the files the pages use
@@ -32,11 +32,14 @@ def get(url):
     return data
 
 
-def fetch(dest, urls):
-    if dest.exists() and not FORCE:
-        print(f"keep   {dest.relative_to(ROOT)}")
+def fetch(base, urls):
+    """`base` is the path without an extension; each download keeps its source's own type."""
+    found = [p for p in base.parent.glob(base.name + ".*")] if base.parent.exists() else []
+    if found and not FORCE:
+        print(f"keep   {found[0].relative_to(ROOT)}")
         return True
     for url in urls:
+        dest = base.with_name(base.name + "." + url.rsplit(".", 1)[-1].lower())
         try:
             data = get(url)
         except Exception as e:  # try the next source
@@ -49,10 +52,12 @@ def fetch(dest, urls):
         dest.write_bytes(data)
         print(f"saved  {dest.relative_to(ROOT)} ({len(data) // 1024} KB)")
         return True
-    print(f"FAILED {dest.relative_to(ROOT)}")
+    print(f"FAILED {base.relative_to(ROOT)}")
     return False
 
 
-ok = all([fetch(ROOT / "assets/retailers" / f, [u]) for _, f, u in RETAILERS]
-         + [fetch(ROOT / "assets/products/originals" / f.replace(".webp", ".png"), urls) for _, _, _, f, urls in PRODUCTS])
+logos = [fetch(ROOT / "assets/retailers" / f.rsplit(".", 1)[0], [u]) for _, f, u in RETAILERS] if SHOW_LOGOS else []
+if not SHOW_LOGOS:
+    print("logos skipped: SHOW_LOGOS is off in tools/catalogue.py until their use is approved")
+ok = all(logos + [fetch(ROOT / "assets/products/originals" / f.rsplit(".", 1)[0], urls) for _, _, _, f, urls in PRODUCTS])
 sys.exit(0 if ok else 1)

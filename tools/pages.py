@@ -18,7 +18,7 @@ SITE = "https://maliwize.co.za"
 # any other value.
 APP = "https://app.maliwize.co.za"
 # Bump when assets/site.css changes: /assets/* is cached for a week (netlify.toml).
-CSS_VERSION = "2026-10-01c"
+CSS_VERSION = "2026-10-01d"
 
 NAV = [("/", "Home"), ("/how-it-works/", "How it works"), ("/maliscore/", "Maliscore"),
        ("/rewards/", "Rewards"), ("/contact/", "Contact")]
@@ -240,7 +240,7 @@ HOME = page(
       <div class="wrap hf-shelf">
         <p class="hf-shelf-k reveal">Use your coupons at</p>
         {retailers_row()}
-        {product_grid(["milk", "peanut", "smartfood", "washing"])}
+        {product_grid(["milk", "maize", "crunch", "washing"])}
       </div>
     </section>
 """
@@ -430,7 +430,7 @@ REWARDS = page(
         <h2 class="reveal">Rands off the things you already buy</h2>
         <p class="lead reveal">Use your coupons at these stores. The coupons on offer change, and your tier decides which are open to you.</p>
         {retailers_row()}
-        {product_grid(["milk", "peanut", "allgold", "washing", "smartfood", "oats", "crunch", "worcester"])}""",
+        {product_grid(["milk", "maize", "peanut", "rice", "oats", "allgold", "wings", "crunch"])}""",
         "shelf-block",
     )
     + section(

@@ -15,8 +15,9 @@ often in debt review, so the copy carries the same rails as the app:
 - **Privacy wording is a summary.** The policy members agree to lives in the app. Anything new about
   data handling goes past Franco first, and legal points are phrased as facts only once counsel agrees.
 - No prices, partner names, retailer names or commercial terms until Franco says they are public.
-  Public since 1 Oct 2026: the retailers Shoprite Checkers, Pick n Pay and Dis-Chem, their logos, and
-  product pictures from the coupon catalogue (`tools/catalogue.py`).
+  Public since 1 Oct 2026: the retailer names Shoprite Checkers, Pick n Pay and Dis-Chem, and product
+  pictures from the coupon catalogue (`tools/catalogue.py`). Retailer logos wait for approval from the
+  retailers or the coupon network; `SHOW_LOGOS` in `tools/catalogue.py` stays False until Franco says.
 - Do not say what is never shared with Hey Fill. Sharing may grow (Franco, 1 Oct 2026); the policy in
   the app is where the detail lives.
 - Contact addresses: support@maliwize.co.za for members and data questions, info@maliwize.co.za for
