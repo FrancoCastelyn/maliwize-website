@@ -1,0 +1,42 @@
+# The app moved to app.maliwize.co.za on 1 Oct 2026 (scoping board Q-11, AC56). Links sent before
+# then, claim links in SMS and password-reset links in email above all, point at maliwize.co.za,
+# so every app path is sent on. Query strings and #fragments survive a 301.
+#
+# None of these rules is forced (no "!"), on purpose: Netlify serves a real file first, so the
+# website's own pages win. /rewards/ is a website page; /rewards/shop has no file here and goes on
+# to the app. tools/check.mjs fails if a rule is forced or shadows nothing it should.
+/r/*                    https://app.maliwize.co.za/r/:splat                  301
+/auth/*                 https://app.maliwize.co.za/auth/:splat               301
+/auth                   https://app.maliwize.co.za/auth                      301
+/pay/*                  https://app.maliwize.co.za/pay/:splat                301
+/payfast/*              https://app.maliwize.co.za/payfast/:splat            301
+/reset-password         https://app.maliwize.co.za/reset-password            301
+/forgot-password        https://app.maliwize.co.za/forgot-password           301
+/login                  https://app.maliwize.co.za/auth                      301
+/welcome                https://app.maliwize.co.za/welcome                   301
+/home                   https://app.maliwize.co.za/home                      301
+/onboarding/*           https://app.maliwize.co.za/onboarding/:splat         301
+/onboarding             https://app.maliwize.co.za/onboarding                301
+/budget/*               https://app.maliwize.co.za/budget/:splat             301
+/budget                 https://app.maliwize.co.za/budget                    301
+/activity/*             https://app.maliwize.co.za/activity/:splat           301
+/activity               https://app.maliwize.co.za/activity                  301
+/inbox/*                https://app.maliwize.co.za/inbox/:splat              301
+/inbox                  https://app.maliwize.co.za/inbox                     301
+/me/*                   https://app.maliwize.co.za/me/:splat                 301
+/me                     https://app.maliwize.co.za/me                        301
+/maliscore              https://app.maliwize.co.za/maliscore                 301
+/rewards/*              https://app.maliwize.co.za/rewards/:splat            301
+/explore/*              https://app.maliwize.co.za/explore/:splat            301
+/explore                https://app.maliwize.co.za/explore                   301
+/settings/*             https://app.maliwize.co.za/settings/:splat           301
+/settings               https://app.maliwize.co.za/settings                  301
+/subscribe              https://app.maliwize.co.za/subscribe                 301
+/reactivate             https://app.maliwize.co.za/reactivate                301
+/profile-completion     https://app.maliwize.co.za/profile-completion        301
+/accounts               https://app.maliwize.co.za/accounts                  301
+/transactions           https://app.maliwize.co.za/transactions              301
+/gone                   https://app.maliwize.co.za/gone                      301
+/admin/*                https://app.maliwize.co.za/admin/:splat              301
+/admin                  https://app.maliwize.co.za/admin                     301
+/agent/*                https://app.maliwize.co.za/agent/:splat              301
