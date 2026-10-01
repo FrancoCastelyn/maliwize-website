@@ -27,6 +27,13 @@ const banned = [
   [/financial advice(?! ?,? lend)/i, 'only in the "does not give financial advice" line'],
   [/\bwallet\b/i, 'no wallet is live or licensed; do not present one'],
   [/guarantee/i, 'no guarantees of savings'],
+  // Nothing commercial until Franco says it is public (CLAUDE.md): no retailer or partner names,
+  // no prices, and no rand figure attached to a saving.
+  [/\b(shoprite|checkers|pick n pay|dis-?chem|clicks|woolworths|spar|usave|boxer|makro|berelo|wigroup|wicode)\b/i, 'no retailer or partner names until Franco says they are public'],
+  [/\bR\s?\d[\d ]*(?:,\d\d)?\s*(?:pm|p\/m|per month|a month|\/month|once[- ]off|per year|a year)\b/i, 'no prices'],
+  [/\bsaves?\b(?: you)?(?: up to)?\s+R\s?\d/i, 'no rand figure for a saving; say that savings depend on what you buy'],
+  [/\bR\s?\d[\d ]*(?:,\d\d)?\s*(?:saved|in savings|of savings)\b/i, 'no rand figure for a saving; say that savings depend on what you buy'],
+  [/\b(airtime on credit|cashback|cash back)\b/i, 'not offered; do not present it'],
 ];
 
 const files = pages(ROOT);
@@ -42,6 +49,8 @@ for (const f of files) {
   if (!d || d[1].length < 50 || d[1].length > 170) fail(rel, 'description missing or not 50 to 170 characters');
   if (!/<html lang="en-ZA">/.test(html)) fail(rel, 'lang must be en-ZA');
   if (/<script\b/i.test(html)) fail(rel, 'no scripts: the site ships no JavaScript (CSP script-src none)');
+  if (/\sstyle="/i.test(html) || /<style\b/i.test(html)) fail(rel, 'no inline styles: the CSP allows only /assets/site.css');
+  if (/\son[a-z]+="/i.test(html)) fail(rel, 'no inline event handlers');
   if ((html.match(/<h1\b/g) || []).length !== 1) fail(rel, 'exactly one h1 per page');
   for (const [re, why] of banned) {
     const m = text.match(re);
@@ -78,7 +87,7 @@ for (const line of redirects) {
   if (/!$/.test(code || '')) fail('_redirects', `forced rule hides website pages: ${line.trim()}`);
   if (!to.startsWith(APP + '/')) fail('_redirects', `rule does not go to the app (${APP}): ${line.trim()}`);
   if (code !== '301') fail('_redirects', `use a permanent 301: ${line.trim()}`);
-  if (['/', '/how-it-works/', '/privacy/', '/contact/', '/rewards/'].includes(from)) fail('_redirects', `rule would take over a website page: ${from}`);
+  if (['/', '/how-it-works/', '/maliscore/', '/privacy/', '/contact/', '/rewards/'].includes(from)) fail('_redirects', `rule would take over a website page: ${from}`);
 }
 for (const must of ['/r/*', '/auth/*', '/pay/*', '/login']) if (!redirects.some((l) => l.trim().split(/\s+/)[0] === must)) fail('_redirects', `missing ${must}: links already sent would break`);
 

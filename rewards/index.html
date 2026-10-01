@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Hey Fill Rewards in Maliwize</title>
-  <meta name="description" content="Rands off selected groceries, opened by your Maliscore. Earned by budgeting and saving, never by spending more.">
+  <meta name="description" content="Rands off selected groceries, opened by your Maliscore. Pick coupons, take one code to the till. Earned by budgeting and saving, never by spending more.">
   <link rel="canonical" href="https://maliwize.co.za/rewards/">
-  <meta name="theme-color" content="#0E3A52">
+  <meta name="theme-color" content="#0076CA">
   <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Maliwize">
   <meta property="og:title" content="Hey Fill Rewards in Maliwize">
-  <meta property="og:description" content="Rands off selected groceries, opened by your Maliscore. Earned by budgeting and saving, never by spending more.">
+  <meta property="og:description" content="Rands off selected groceries, opened by your Maliscore. Pick coupons, take one code to the till. Earned by budgeting and saving, never by spending more.">
   <meta property="og:url" content="https://maliwize.co.za/rewards/">
   <meta property="og:image" content="https://maliwize.co.za/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -26,69 +26,99 @@
   <header class="top">
     <div class="wrap">
       <a class="brand" href="/"><img src="/assets/icon.svg" alt="" width="34" height="34">Maliwize</a>
+      <input type="checkbox" id="menu" class="menu-box" aria-label="Open the menu">
+      <label for="menu" class="menu-btn" aria-hidden="true"><span></span><span></span><span></span></label>
       <nav class="nav" aria-label="Main">
-        <a href="/">Home</a>
-        <a href="/how-it-works/">How it works</a>
-        <a href="/rewards/" aria-current="page">Rewards</a>
-        <a href="/privacy/">Privacy</a>
-        <a href="/contact/">Contact</a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/how-it-works/">How it works</a>
+          <a href="/maliscore/">Maliscore</a>
+          <a href="/rewards/" aria-current="page">Rewards</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/contact/">Contact</a>
+        </div>
         <a class="signin" href="https://app.maliwize.co.za/auth">Sign in</a>
       </nav>
     </div>
   </header>
-  <section class="hero small">
+  <section class="hero small hf-hero">
     <div class="wrap">
-      <div>
+      <div class="hero-copy">
         
-        <h1>Hey Fill Rewards, inside Maliwize</h1>
-        <p class="lead">Rands off selected groceries, opened by your Maliscore.</p>
-        
+        <p class="hf-logo"><img src="/assets/heyfill-lockup-white.svg" alt="Hey Fill" width="172" height="54"><span>Rewards, inside Maliwize</span></p>
+        <h1 class="hf-head"><span class="blk red">Rands off</span> <span class="blk white">selected groceries.</span><br>Opened by your Maliscore.</h1>
+        <p class="lead">Pick coupons, take one code to the till. Earned by budgeting and saving, never by spending more.</p>
+        <ul class="hf-pills"><li>One basket, one code</li><li>More open as you climb</li><li>Off until you switch it on</li></ul>
       </div>
     </div>
   </section>
   <main id="main">
-    <section class="block">
+    <section class="band hf-band hf-page">
       <div class="wrap">
-        <p class="label">Your Maliscore tier</p>
-        <h2>Four tiers, earned by good habits</h2>
-        <p class="lead">Every tier opens coupons. Capturing your spending, staying inside your budget lines and reaching your savings move you up.</p>
-        <div class="tiers">
-          <div class="tier"><b>Starter</b><span>from 0 points</span></div>
-          <div class="tier"><b>Builder</b><span>from 100 points</span></div>
-          <div class="tier"><b>Achiever</b><span>from 300 points</span></div>
-          <div class="tier"><b>Champion</b><span>from 600 points</span></div>
-        </div>
+        <ol class="hf-steps">
+          <li class="hf-step reveal">
+            <span class="hf-k">1</span>
+            <div><h2>Switch it on</h2><p>Rewards are off until you switch them on in the Rewards tab, with a consent of their own that says exactly what is shared. Switch off any time in Settings.</p></div>
+            <div class="phone tilt-r small" role="img" aria-label="Switching on Hey Fill Rewards: exactly what is shared, and a separate consent"><div class="screen" aria-hidden="true"><div class="island"></div><div class="sb"><span>9:41</span><svg viewBox="0 0 46 12" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="4.5" y="5" width="3" height="7" rx="1"/><rect x="9" y="3" width="3" height="9" rx="1"/><rect x="13.5" y="1" width="3" height="11" rx="1"/><path d="M21 5.2a7 7 0 0 1 9 0l-1.3 1.6a5 5 0 0 0-6.4 0z"/><path d="M23.3 8a3.6 3.6 0 0 1 4.4 0L25.5 10.6z"/><rect x="33" y="1.5" width="10" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="34.5" y="3" width="6.5" height="6" rx="1"/><rect x="43.6" y="4.5" width="1.6" height="3" rx=".5"/></svg></div><div class="app hf"><header class="ah2"><span class="back">‹</span><b>Hey Fill Rewards</b></header><div class="hfhero"><span class="hfm"><svg viewBox="41.76 22.59 683.12 620.38" aria-hidden="true" focusable="false"><path fill="#0076CA" d="M188.85 360.84v84.39c0 40.62-32.94 73.54-73.54 73.54-20.31 0-38.69-8.23-52.01-21.54-13.31-13.31-21.54-31.69-21.54-52.01V287.3c0 40.61 32.92 73.54 73.54 73.54h73.55z"/><path fill="#D70027" d="M724.88 96.13c0 20.31-8.23 38.69-21.54 52.01-13.31 13.31-31.69 21.54-52.01 21.54H390.91c-40.62 0-73.54-32.94-73.54-73.54 0-20.31 8.23-38.69 21.54-52.01 13.31-13.31 31.69-21.54 52.01-21.54h260.42c40.62 0 73.54 32.92 73.54 73.54z"/><path fill="#00A2E7" d="M471.7 287.3v282.13c0 40.61-32.92 73.54-73.54 73.54-20.31 0-38.69-8.23-52.01-21.54-13.31-13.31-21.54-31.69-21.54-52.01V360.84H115.3c-40.62 0-73.54-32.94-73.54-73.54V96.13c0-40.62 32.92-73.54 73.54-73.54 20.31 0 38.69 8.23 52.01 21.54s21.54 31.69 21.54 52.01v117.62h209.31c20.31 0 38.69 8.23 52.01 21.54 13.31 13.31 21.54 31.69 21.54 52z"/><path fill="#FD8514" d="M619.92 287.3c0 20.29-8.23 38.69-21.54 52.01-13.31 13.29-31.69 21.54-52.01 21.54H471.7V287.3c0-20.31-8.23-38.69-21.54-52.01-13.31-13.31-31.69-21.54-52.01-21.54h148.22c40.63 0 73.55 32.92 73.55 73.55z"/></svg></span><b>Switch on Hey Fill Rewards</b><small>Rands off selected groceries, opened by your Maliscore.</small></div><div class="card"><div class="ch"><b>What is shared</b></div><div class="rule"><span class="ic">✓</span><span>Your tier</span></div><div class="rule"><span class="ic">✓</span><span>Your name and mobile number</span></div><div class="rule"><span class="ic">✓</span><span>Your ID number, so coupons can be issued to you</span></div><div class="rule"><span class="ic no">✕</span><span>Never your transactions, balances or budget</span></div></div><div class="card consent"><span class="box">✓</span><span>I have read the Hey Fill Rewards terms and I agree</span></div><div class="btn hfb">Switch on</div><small class="foot center">Switch off any time in Settings</small></div><div class="tb"><span class=""><svg viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5h-5v5H5a1 1 0 0 1-1-1z"/></svg>Home</span><span class=""><svg viewBox="0 0 24 24"><path d="M5 5h14v3H5zm0 5.5h14v3H5zm0 5.5h9v3H5z"/></svg>Budget</span><span class=""><svg viewBox="0 0 24 24"><path d="M4 16.5h11.2l-2.6 2.6 1.4 1.4 5-5-5-5-1.4 1.4 2.6 2.6H4zm16-9H8.8l2.6-2.6L10 3.5l-5 5 5 5 1.4-1.4L8.8 9.5H20z"/></svg>Activity</span><span class="on"><svg viewBox="0 0 24 24"><path d="M3.5 4.5h7.6l9.4 9.4-7.6 7.6-9.4-9.4zm4 2.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>Rewards</span><span class=""><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0z"/></svg>Me</span></div></div></div>
+          </li>
+          <li class="hf-step reveal">
+            <span class="hf-k">2</span>
+            <div><h2>Pick your coupons</h2><p>Rands off selected grocery items, as tiles or a list. Your tier shows which are open. A locked coupon says which tier opens it, and that is all it ever asks of you.</p></div>
+            <div class="phone tilt-l small" role="img" aria-label="Hey Fill Rewards inside Maliwize: grocery coupons as tiles, with a locked one that opens at a higher tier"><div class="screen" aria-hidden="true"><div class="island"></div><div class="sb"><span>9:41</span><svg viewBox="0 0 46 12" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="4.5" y="5" width="3" height="7" rx="1"/><rect x="9" y="3" width="3" height="9" rx="1"/><rect x="13.5" y="1" width="3" height="11" rx="1"/><path d="M21 5.2a7 7 0 0 1 9 0l-1.3 1.6a5 5 0 0 0-6.4 0z"/><path d="M23.3 8a3.6 3.6 0 0 1 4.4 0L25.5 10.6z"/><rect x="33" y="1.5" width="10" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="34.5" y="3" width="6.5" height="6" rx="1"/><rect x="43.6" y="4.5" width="1.6" height="3" rx=".5"/></svg></div><div class="app hf"><header class="hfh"><span class="hfm sm"><svg viewBox="41.76 22.59 683.12 620.38" aria-hidden="true" focusable="false"><path fill="#0076CA" d="M188.85 360.84v84.39c0 40.62-32.94 73.54-73.54 73.54-20.31 0-38.69-8.23-52.01-21.54-13.31-13.31-21.54-31.69-21.54-52.01V287.3c0 40.61 32.92 73.54 73.54 73.54h73.55z"/><path fill="#D70027" d="M724.88 96.13c0 20.31-8.23 38.69-21.54 52.01-13.31 13.31-31.69 21.54-52.01 21.54H390.91c-40.62 0-73.54-32.94-73.54-73.54 0-20.31 8.23-38.69 21.54-52.01 13.31-13.31 31.69-21.54 52.01-21.54h260.42c40.62 0 73.54 32.92 73.54 73.54z"/><path fill="#00A2E7" d="M471.7 287.3v282.13c0 40.61-32.92 73.54-73.54 73.54-20.31 0-38.69-8.23-52.01-21.54-13.31-13.31-21.54-31.69-21.54-52.01V360.84H115.3c-40.62 0-73.54-32.94-73.54-73.54V96.13c0-40.62 32.92-73.54 73.54-73.54 20.31 0 38.69 8.23 52.01 21.54s21.54 31.69 21.54 52.01v117.62h209.31c20.31 0 38.69 8.23 52.01 21.54 13.31 13.31 21.54 31.69 21.54 52z"/><path fill="#FD8514" d="M619.92 287.3c0 20.29-8.23 38.69-21.54 52.01-13.31 13.29-31.69 21.54-52.01 21.54H471.7V287.3c0-20.31-8.23-38.69-21.54-52.01-13.31-13.31-31.69-21.54-52.01-21.54h148.22c40.63 0 73.55 32.92 73.55 73.55z"/></svg></span><b>Hey Fill Rewards</b></header><small class="sub">Builder tier · 9 of 14 coupons open</small><div class="chips"><span class="on">All</span><span>Rands off</span><span>Groceries</span><span>Baby</span><span>Home</span></div><div class="grid2"><div class="ctile "><div class="pic">🥛</div><span class="off">R15 off</span><b>Long-life milk, 6 pack</b><small>Groceries</small><div class="add on">✓ Added</div></div><div class="ctile "><div class="pic">🧴</div><span class="off">R20 off</span><b>Washing powder, 2 kg</b><small>Home</small><div class="add">Add</div></div><div class="ctile "><div class="pic">🍞</div><span class="off">R10 off</span><b>Brown bread, 700 g</b><small>Groceries</small><div class="add on">✓ Added</div></div><div class="ctile locked"><div class="pic">🧷</div><span class="off">R30 off</span><b>Nappies, jumbo pack</b><small>Reach Achiever in Maliwize to unlock</small><div class="add off">Locked</div></div></div></div><div class="basket"><span>2 coupons picked</span><span>Get one code ›</span></div><div class="tb"><span class=""><svg viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5h-5v5H5a1 1 0 0 1-1-1z"/></svg>Home</span><span class=""><svg viewBox="0 0 24 24"><path d="M5 5h14v3H5zm0 5.5h14v3H5zm0 5.5h9v3H5z"/></svg>Budget</span><span class=""><svg viewBox="0 0 24 24"><path d="M4 16.5h11.2l-2.6 2.6 1.4 1.4 5-5-5-5-1.4 1.4 2.6 2.6H4zm16-9H8.8l2.6-2.6L10 3.5l-5 5 5 5 1.4-1.4L8.8 9.5H20z"/></svg>Activity</span><span class="on"><svg viewBox="0 0 24 24"><path d="M3.5 4.5h7.6l9.4 9.4-7.6 7.6-9.4-9.4zm4 2.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>Rewards</span><span class=""><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0z"/></svg>Me</span></div></div></div>
+          </li>
+          <li class="hf-step reveal">
+            <span class="hf-k">3</span>
+            <div><h2>One code at the till</h2><p>Your basket becomes one code with a barcode. Show it to the cashier and the rands come off before you pay. It works on a slow connection too.</p></div>
+            <div class="phone tilt-r small" role="img" aria-label="One code at the till for the coupons picked, with a barcode and its expiry"><div class="screen" aria-hidden="true"><div class="island"></div><div class="sb"><span>9:41</span><svg viewBox="0 0 46 12" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="4.5" y="5" width="3" height="7" rx="1"/><rect x="9" y="3" width="3" height="9" rx="1"/><rect x="13.5" y="1" width="3" height="11" rx="1"/><path d="M21 5.2a7 7 0 0 1 9 0l-1.3 1.6a5 5 0 0 0-6.4 0z"/><path d="M23.3 8a3.6 3.6 0 0 1 4.4 0L25.5 10.6z"/><rect x="33" y="1.5" width="10" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="34.5" y="3" width="6.5" height="6" rx="1"/><rect x="43.6" y="4.5" width="1.6" height="3" rx=".5"/></svg></div><div class="app hf"><header class="ah2"><span class="back">‹</span><b>Your code</b></header><div class="codecard"><small>One code for 3 coupons</small><div class="barcode"></div><div class="digits">9021 4483 7726</div><div class="ok">● Active · expires in 23:58</div><small>Show this at the till. Works even on a slow connection.</small></div><div class="card"><div class="ch"><b>In this code</b></div><div class="crow"><span class="off">R15 off</span><span>Long-life milk, 6 pack</span></div><div class="crow"><span class="off">R10 off</span><span>Brown bread, 700 g</span></div><div class="crow"><span class="off">R20 off</span><span>Washing powder, 2 kg</span></div></div><small class="foot">Savings depend on what you buy. Grocery coupons only.</small></div><div class="tb"><span class=""><svg viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5h-5v5H5a1 1 0 0 1-1-1z"/></svg>Home</span><span class=""><svg viewBox="0 0 24 24"><path d="M5 5h14v3H5zm0 5.5h14v3H5zm0 5.5h9v3H5z"/></svg>Budget</span><span class=""><svg viewBox="0 0 24 24"><path d="M4 16.5h11.2l-2.6 2.6 1.4 1.4 5-5-5-5-1.4 1.4 2.6 2.6H4zm16-9H8.8l2.6-2.6L10 3.5l-5 5 5 5 1.4-1.4L8.8 9.5H20z"/></svg>Activity</span><span class="on"><svg viewBox="0 0 24 24"><path d="M3.5 4.5h7.6l9.4 9.4-7.6 7.6-9.4-9.4zm4 2.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>Rewards</span><span class=""><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0z"/></svg>Me</span></div></div></div>
+          </li>
+        </ol>
       </div>
     </section>
     <section class="block">
       <div class="wrap">
+        <p class="label reveal">Your tier opens coupons</p>
+        <h2 class="reveal">Four tiers, earned by good habits</h2>
+        <p class="lead reveal">Every tier opens coupons. Capturing your spending, staying inside your budget lines and reaching your savings move you up. The amount you spend never does.</p>
+        <ol class="tiers dark reveal" aria-label="The four tiers">
+          <li><b>Starter</b><span>from 0 points</span></li>
+          <li><b>Builder</b><span>from 100 points</span></li>
+          <li><b>Achiever</b><span>from 300 points</span></li>
+          <li><b>Champion</b><span>from 600 points</span></li>
+        </ol>
+        <div class="promise hfp reveal"><p><b>No spend targets, ever.</b> Coupons open because you budget and save, not because you buy more. A locked coupon never asks you to spend to unlock it.</p></div>
+      </div>
+    </section>    <section class="block">
+      <div class="wrap">
         <div class="grid two">
-          <div class="card">
-            <h3>One basket, one code</h3>
-            <p>Pick the coupons you want, and take them to the till as one code. Coupons are for rands off selected items; your savings depend on what you buy.</p>
-          </div>
-          <div class="card">
+          <div class="card reveal">
             <h3>You decide when it is on</h3>
             <p>Switching on shares your tier, name, mobile number and ID number with the rewards layer, so coupons can be issued to you. Never your transactions, balances or budget. Switch it off any time in Settings.</p>
           </div>
+          <div class="card reveal">
+            <h3>Two products that recognise each other</h3>
+            <p>Hey Fill is its own product, with its own account and its own privacy terms. Inside Maliwize it is the rewards layer: your Maliwize account stays yours, your Hey Fill account stays yours, and your tier is what travels between them.</p>
+          </div>
         </div>
-        <div class="promise"><p><b>No spend targets, ever.</b> Rewards open up because you budget and save, not because you buy more.</p></div>
+        <p class="hf-caveat dark reveal">Savings depend on what you buy. Grocery coupons only. A coupon is rands off a selected item at a participating store, never cash.</p>
+        <p class="reveal"><a class="more" href="/privacy/">What is shared, in full <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h14m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2"/></svg></a></p>
       </div>
     </section>
   </main>
   <footer class="foot">
     <div class="wrap">
-      <div>
+      <div class="foot-brand">
         <a class="brand" href="/"><img src="/assets/icon.svg" alt="" width="34" height="34">Maliwize</a>
         <p>Know where your money goes. Get rewarded for it.</p>
-        <p class="legal">Maliwize is a budgeting app. It does not give financial advice, lend money, or hold or move money for anyone.<br>MALIWIZE (PTY) LTD &middot; registration 2026/703098/07</p>
+        <p class="legal">Maliwize is a budgeting app. It does not give financial advice, lend money, or hold or move money for anyone. Rewards come from budgeting and saving, never from spending.</p>
+        <p class="legal">MALIWIZE (PTY) LTD &middot; registration 2026/703098/07 &middot; Cape Town, South Africa</p>
       </div>
       <div>
         <p class="caption">Maliwize</p>
         <ul>
           <li><a href="/how-it-works/">How it works</a></li>
-          <li><a href="/rewards/">Rewards</a></li>
-          <li><a href="https://app.maliwize.co.za/auth">Sign in</a></li>
+          <li><a href="/maliscore/">Maliscore</a></li>
+          <li><a href="/rewards/">Hey Fill Rewards</a></li>
+          <li><a href="https://app.maliwize.co.za/auth">Member sign in</a></li>
         </ul>
       </div>
       <div>
@@ -96,6 +126,7 @@
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/contact/">Contact</a></li>
+          <li><a href="/contact/#partners">For partners</a></li>
         </ul>
       </div>
     </div>

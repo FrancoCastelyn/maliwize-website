@@ -26,19 +26,24 @@
   <header class="top">
     <div class="wrap">
       <a class="brand" href="/"><img src="/assets/icon.svg" alt="" width="34" height="34">Maliwize</a>
+      <input type="checkbox" id="menu" class="menu-box" aria-label="Open the menu">
+      <label for="menu" class="menu-btn" aria-hidden="true"><span></span><span></span><span></span></label>
       <nav class="nav" aria-label="Main">
-        <a href="/">Home</a>
-        <a href="/how-it-works/">How it works</a>
-        <a href="/rewards/">Rewards</a>
-        <a href="/privacy/" aria-current="page">Privacy</a>
-        <a href="/contact/">Contact</a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/how-it-works/">How it works</a>
+          <a href="/maliscore/">Maliscore</a>
+          <a href="/rewards/">Rewards</a>
+          <a href="/privacy/" aria-current="page">Privacy</a>
+          <a href="/contact/">Contact</a>
+        </div>
         <a class="signin" href="https://app.maliwize.co.za/auth">Sign in</a>
       </nav>
     </div>
   </header>
   <section class="hero small">
     <div class="wrap">
-      <div>
+      <div class="hero-copy">
         
         <h1>Privacy at Maliwize</h1>
         <p class="lead">Your money is personal. Here is how we look after the information that goes with it.</p>
@@ -48,7 +53,8 @@
   </section>
   <main id="main">
     <section class="block">
-      <div class="wrap prose">
+      <div class="wrap">
+        <div class="prose">
         <p class="note"><b>Summary, not the policy.</b> This page explains how Maliwize treats your information in plain words. The full privacy policy you agree to is shown in the app when you sign up, and it is the one that applies.</p>
         <h2>What we collect, and why</h2>
         <ul>
@@ -60,26 +66,31 @@
         <p>Each thing you agree to is a separate choice, recorded with the date and the version you saw: the terms, the privacy policy, rewards, and marketing messages. Optional ones can be withdrawn in Settings.</p>
         <h2>What is shared</h2>
         <p>If you switch on rewards, your tier, name, mobile number and ID number go to the rewards layer so coupons can be issued to you. Never your transactions, balances or budget. Nothing is sold, and nothing is used to target you by who you are.</p>
+        <h2>No bank login</h2>
+        <p>Maliwize does not ask for your banking password. You capture what you spend, or import a statement you downloaded yourself.</p>
         <h2>Your rights</h2>
         <p>You can ask to see the information we hold about you, have it corrected, or have your account and data deleted. You can also complain to the Information Regulator.</p>
         <h2>Contact our Information Officer</h2>
         <p>Email <a href="mailto:privacy@maliwize.co.za">privacy@maliwize.co.za</a>.</p>
+        </div>
       </div>
     </section>
   </main>
   <footer class="foot">
     <div class="wrap">
-      <div>
+      <div class="foot-brand">
         <a class="brand" href="/"><img src="/assets/icon.svg" alt="" width="34" height="34">Maliwize</a>
         <p>Know where your money goes. Get rewarded for it.</p>
-        <p class="legal">Maliwize is a budgeting app. It does not give financial advice, lend money, or hold or move money for anyone.<br>MALIWIZE (PTY) LTD &middot; registration 2026/703098/07</p>
+        <p class="legal">Maliwize is a budgeting app. It does not give financial advice, lend money, or hold or move money for anyone. Rewards come from budgeting and saving, never from spending.</p>
+        <p class="legal">MALIWIZE (PTY) LTD &middot; registration 2026/703098/07 &middot; Cape Town, South Africa</p>
       </div>
       <div>
         <p class="caption">Maliwize</p>
         <ul>
           <li><a href="/how-it-works/">How it works</a></li>
-          <li><a href="/rewards/">Rewards</a></li>
-          <li><a href="https://app.maliwize.co.za/auth">Sign in</a></li>
+          <li><a href="/maliscore/">Maliscore</a></li>
+          <li><a href="/rewards/">Hey Fill Rewards</a></li>
+          <li><a href="https://app.maliwize.co.za/auth">Member sign in</a></li>
         </ul>
       </div>
       <div>
@@ -87,6 +98,7 @@
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/contact/">Contact</a></li>
+          <li><a href="/contact/#partners">For partners</a></li>
         </ul>
       </div>
     </div>
