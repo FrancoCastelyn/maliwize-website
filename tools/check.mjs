@@ -4,7 +4,7 @@ import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join, relative } from 'node:path';
 
 const ROOT = new URL('..', import.meta.url).pathname;
-const APP = 'https://maliwize.co.za'; // keep in step with APP in tools/pages.py
+const APP = 'https://app.maliwize.co.za'; // keep in step with APP in tools/pages.py
 const fails = [];
 const fail = (file, msg) => fails.push(`${file}: ${msg}`);
 
@@ -48,10 +48,10 @@ for (const f of files) {
     if (m && !(re.source.startsWith('financial advice') && /does not give financial advice/.test(text))) fail(rel, `"${m[0]}": ${why}`);
   }
   for (const [, href] of html.matchAll(/href="([^"#]+)/g)) {
-    if (href.startsWith('https://maliwize.co.za/') && !href.startsWith(APP + '/login') && !href.startsWith('https://maliwize.co.za/sitemap')) {
+    if (href.startsWith('https://maliwize.co.za/') && !href.startsWith(APP + '/auth') && !href.startsWith('https://maliwize.co.za/sitemap')) {
       if (!html.includes('rel="canonical" href="' + href) && !href.includes('og-image')) fail(rel, `absolute link to the site: ${href} (use a path)`);
     }
-    if (/^https?:\/\/[^/]*maliwize/.test(href) && href.includes('/login') && !href.startsWith(APP)) fail(rel, `app link does not use APP (${APP}): ${href}`);
+    if (/^https?:\/\/[^/]*maliwize/.test(href) && href.includes('/auth') && !href.startsWith(APP)) fail(rel, `app link does not use APP (${APP}): ${href}`);
     if (href.startsWith('/') && !href.startsWith('//')) {
       const clean = href.split('?')[0];
       const target = clean.endsWith('/') ? join(ROOT, clean, 'index.html') : join(ROOT, clean);
@@ -69,6 +69,18 @@ const sitemap = readFileSync(join(ROOT, 'sitemap.xml'), 'utf8');
 for (const [, loc] of sitemap.matchAll(/<loc>https:\/\/maliwize\.co\.za([^<]*)<\/loc>/g)) {
   if (!existsSync(join(ROOT, loc, loc.endsWith('/') ? 'index.html' : ''))) fail('sitemap.xml', `lists a page that does not exist: ${loc}`);
 }
+
+// Redirects: the old app paths go on to the app, and no rule may be forced, or it would hide a
+// website page (see the header of _redirects).
+const redirects = readFileSync(join(ROOT, '_redirects'), 'utf8').split('\n').filter((l) => l.trim() && !l.startsWith('#'));
+for (const line of redirects) {
+  const [from, to, code] = line.trim().split(/\s+/);
+  if (/!$/.test(code || '')) fail('_redirects', `forced rule hides website pages: ${line.trim()}`);
+  if (!to.startsWith(APP + '/')) fail('_redirects', `rule does not go to the app (${APP}): ${line.trim()}`);
+  if (code !== '301') fail('_redirects', `use a permanent 301: ${line.trim()}`);
+  if (['/', '/how-it-works/', '/privacy/', '/contact/', '/rewards/'].includes(from)) fail('_redirects', `rule would take over a website page: ${from}`);
+}
+for (const must of ['/r/*', '/auth/*', '/pay/*', '/login']) if (!redirects.some((l) => l.trim().split(/\s+/)[0] === must)) fail('_redirects', `missing ${must}: links already sent would break`);
 
 if (fails.length) { console.error(`check failed (${fails.length}):\n  ` + fails.join('\n  ')); process.exit(1); }
 console.log(`check ok: ${files.length} pages`);

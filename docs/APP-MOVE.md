@@ -1,5 +1,10 @@
 # Moving the app to app.maliwize.co.za (scoping board AC56)
 
+**Progress, 1 Oct 2026:** `app.maliwize.co.za` is live on the app's Netlify project (covered by the
+existing `*.maliwize.co.za` certificate), Supabase Site URL, redirect URLs and `APP_BASE_URL` are
+set, and sign-in works there. `_redirects` in this repo and the site's sign-in links already point
+at the app. What remains is the domain move itself and the checks after it.
+
 Done as its own release, after the site has been reviewed on its Netlify preview address.
 
 ## Before the switch (Franco, dashboards)
@@ -19,7 +24,7 @@ Done as its own release, after the site has been reviewed on its Netlify preview
 
    ```
    /r/*          https://app.maliwize.co.za/r/:splat          301
-   /login        https://app.maliwize.co.za/login             301
+   /login        https://app.maliwize.co.za/auth              301
    /auth/*       https://app.maliwize.co.za/auth/:splat       301
    /settings/*   https://app.maliwize.co.za/settings/:splat   301
    /admin/*      https://app.maliwize.co.za/admin/:splat      301

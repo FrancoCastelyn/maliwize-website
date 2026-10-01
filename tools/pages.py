@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://maliwize.co.za"
 # Where the app lives. It moves to app.maliwize.co.za when the site takes the main address
 # (scoping board Q-11, AC56). Change it here and re-run; check.mjs fails on any other value.
-APP = "https://maliwize.co.za"
+APP = "https://app.maliwize.co.za"
 
 NAV = [("/", "Home"), ("/how-it-works/", "How it works"), ("/rewards/", "Rewards"),
        ("/privacy/", "Privacy"), ("/contact/", "Contact")]
@@ -55,7 +55,7 @@ def page(path, title, description, body, hero):
       <a class="brand" href="/"><img src="/assets/icon.svg" alt="" width="34" height="34">Maliwize</a>
       <nav class="nav" aria-label="Main">
 {nav}
-        <a class="signin" href="{APP}/login">Sign in</a>
+        <a class="signin" href="{APP}/auth">Sign in</a>
       </nav>
     </div>
   </header>
@@ -75,7 +75,7 @@ def page(path, title, description, body, hero):
         <ul>
           <li><a href="/how-it-works/">How it works</a></li>
           <li><a href="/rewards/">Rewards</a></li>
-          <li><a href="{APP}/login">Sign in</a></li>
+          <li><a href="{APP}/auth">Sign in</a></li>
         </ul>
       </div>
       <div>
@@ -149,7 +149,7 @@ HOME = page(
     </section>""",
     hero('<h1 class="display">Know where your money goes.<br>Get rewarded for it.</h1>',
          "A budget that fills itself in, a Maliscore that grows with good habits, and grocery coupons that open up as it does.",
-         f'<div class="actions"><a class="btn primary" href="/how-it-works/">How it works</a><a class="btn ghost" href="{APP}/login">Member sign in</a></div>',
+         f'<div class="actions"><a class="btn primary" href="/how-it-works/">How it works</a><a class="btn ghost" href="{APP}/auth">Member sign in</a></div>',
          mark=True, status="Opening soon"),
 )
 
@@ -256,7 +256,7 @@ CONTACT = page(
           </div>
           <div class="card">
             <h3>Members</h3>
-            <p>Help with your account is inside the app, under Me. <a href="APPURL/login">Sign in</a>.</p>
+            <p>Help with your account is inside the app, under Me. <a href="APPURL/auth">Sign in</a>.</p>
           </div>
         </div>
       </div>
@@ -270,7 +270,7 @@ NOT_FOUND = page(
     "This page does not exist on the Maliwize website. Go to the home page, or sign in to the app.",
     """    <section class="block">
       <div class="wrap">
-        <p>The page you asked for is not here. <a href="/">Go to the home page</a>, or <a href="APPURL/login">sign in to the app</a>.</p>
+        <p>The page you asked for is not here. <a href="/">Go to the home page</a>, or <a href="APPURL/auth">sign in to the app</a>.</p>
       </div>
     </section>""".replace("APPURL", APP),
     hero("<h1>Page not found</h1>", "It may have moved, or the link may be old.", small=True),
